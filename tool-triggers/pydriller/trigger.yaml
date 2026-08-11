@@ -6,6 +6,6 @@ technique: "Development Process Analysis"
 classification: "Code Churn"
 target_files: [".git"]
 run:
-  command: "python tool-triggers/scripts/run_pydriller.py"
+  command: "python tool-triggers/pydriller/run_pydriller.py"
 requirements: ["pydriller>=2.9"]
 expects: {churn_report_generated: true}
