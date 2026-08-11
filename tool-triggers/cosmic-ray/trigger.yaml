@@ -1,0 +1,11 @@
+tool: cosmic-ray
+version: "8.4.6"
+language: python
+language_version: "3.12"
+technique: "Mutation Testing"
+classification: "Mutation Score"
+target_files: ["app/services/item_service.py", "tests/test_items.py"]
+run:
+  command: "cosmic-ray init tool-triggers/cosmic-ray/cosmic-ray.toml session.sqlite && cosmic-ray exec tool-triggers/cosmic-ray/cosmic-ray.toml session.sqlite && cr-report session.sqlite"
+requirements: ["cosmic-ray==8.4.6"]
+expects: {mutants_generated_and_tested: true}

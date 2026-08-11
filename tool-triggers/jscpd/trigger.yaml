@@ -1,0 +1,11 @@
+tool: jscpd
+version: "4.2.5"
+language: python
+language_version: "3.12"
+technique: "Code Quality Auditing"
+classification: "Code Duplication Detection"
+target_files: ["app/**/*.py", "tests/**/*.py"]
+run:
+  command: "npx jscpd --languages python --min-lines 5 --min-tokens 50 --reporters console,json app tests"
+requirements: ["Node.js with npx", "jscpd@4.2.5"]
+expects: {duplication_report_generated: true}
