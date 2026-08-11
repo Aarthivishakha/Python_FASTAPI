@@ -4,11 +4,8 @@ language: python
 language_version: "3.10"
 technique: "Dependency Risk (SCA)"
 classification: "Vulnerability Dependency Detection"
-target_files:
-  - requirements.txt
+target_files: ["requirements.txt", "requirements-dev.txt"]
 run:
-  command: "bash run_pip_audit.sh"
-requirements:
-  - pip-audit==2.10.1
-expects:
-  - known_cve_count_gt_0: true
+  command: "pip-audit -r requirements.txt && pip-audit -r requirements-dev.txt"
+requirements: ["pip-audit==2.10.1"]
+expects: {dependency_audit_completed: true}

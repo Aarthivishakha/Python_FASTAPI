@@ -1,0 +1,11 @@
+tool: crosshair
+version: "0.0.109"
+language: python
+language_version: "3.10"
+technique: "Static Analysis Metric"
+classification: "Execution Path Integrity"
+target_files: ["app/**/*.py"]
+run:
+  command: "crosshair check app"
+requirements: ["crosshair-tool>=0.0.109"]
+expects: {symbolic_analysis_completed: true}

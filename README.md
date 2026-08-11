@@ -1,8 +1,8 @@
 # FastAPI REST API / Microservice (Python 3.10)
 
 A small, production-shaped FastAPI service with versioned CRUD endpoints,
-validation, centralized configuration, automated tests, Docker support, and
-tool-trigger fixtures adapted from
+validation, centralized configuration, automated tests, optional Docker support,
+and integrated tool triggers adapted from
 [`testable-platform/Golden_Repo_Lite`](https://github.com/testable-platform/Golden_Repo_Lite/tree/python/Python_3.10).
 
 ## Run locally
@@ -43,25 +43,31 @@ boundary for replacing it with a database repository.
 pytest
 pytest --cov=app --cov-branch --cov-report=term-missing
 ruff check app tests
-docker compose up --build
+docker build -t fastapi-microservice .
+docker run --rm -p 8000:8000 fastapi-microservice
 ```
 
 ## Tool triggers
 
-`tool-triggers/` contains the Python 3.10 fixtures and `trigger.yaml` metadata
-from the Golden Repo reference. Some fixtures intentionally contain vulnerable,
-complex, or lint-invalid code so their named analysis tool has a genuine finding.
-They are isolated from the service package and normal test discovery.
-
-Run a trigger from its directory, for example:
+`tool-triggers/` contains all 14 trigger configurations found across the Golden
+Repo Python branch. The manifests are integrated with this repository: they
+target `app/`, `tests/`, dependency files, or this repository's Git history.
+Install the optional tools separately from runtime dependencies:
 
 ```bash
-cd tool-triggers/coverage-py
-bash run_coverage.sh
+python -m pip install -r tool-triggers/requirements.txt
+pytest --cov=app --cov-branch --cov-report=term-missing tests
 ```
 
-Each directory README lists its required tool and expected result. Security
-fixtures must never be imported into application code or shipped as runtime code.
+See `tool-triggers/README.md` for the complete 14-tool matrix and commands.
+
+## Why the Dockerfile exists
+
+Docker is optional for local development. The `Dockerfile` pins the runtime to
+Python 3.10, installs only production dependencies, runs as a non-root user, and
+provides the same deployable environment on any machine or CI platform. Compose
+was removed because this service currently has no database, queue, or second
+container to orchestrate.
 
 ## Layout
 
@@ -72,5 +78,5 @@ app/
   schemas/          Pydantic request/response models
   services/         business logic and storage boundary
 tests/              FastAPI integration tests
-tool-triggers/      isolated tool-detection fixtures and metadata
+tool-triggers/      14 integrated analysis-tool manifests
 ```

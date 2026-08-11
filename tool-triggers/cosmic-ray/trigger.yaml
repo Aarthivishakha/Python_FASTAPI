@@ -4,12 +4,8 @@ language: python
 language_version: "3.10"
 technique: "Mutation Testing"
 classification: "Mutation Score"
-target_files:
-  - calculator.py
-  - test_calculator.py
+target_files: ["app/services/item_service.py", "tests/test_items.py"]
 run:
-  command: "bash run_cosmic_ray.sh"
-requirements:
-  - cosmic-ray==8.4.6
-expects:
-  - mutants_generated_and_tested: true
+  command: "cosmic-ray init tool-triggers/cosmic-ray/cosmic-ray.toml session.sqlite && cosmic-ray exec tool-triggers/cosmic-ray/cosmic-ray.toml session.sqlite && cr-report session.sqlite"
+requirements: ["cosmic-ray==8.4.6"]
+expects: {mutants_generated_and_tested: true}

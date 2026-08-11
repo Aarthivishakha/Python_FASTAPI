@@ -1,4 +1,4 @@
-.PHONY: install run test coverage lint docker-up
+.PHONY: install run test coverage lint docker-build docker-run
 
 install:
 	python -m pip install -r requirements-dev.txt
@@ -15,5 +15,8 @@ coverage:
 lint:
 	ruff check app tests
 
-docker-up:
-	docker compose up --build
+docker-build:
+	docker build -t fastapi-microservice .
+
+docker-run:
+	docker run --rm -p 8000:8000 fastapi-microservice
