@@ -1,7 +1,7 @@
 tool: beniget
 version: "0.5.0"
 language: python
-language_version: "3.15"
+language_version: "3.16"
 technique: "Data Flow Testing"
 classification: "All-Defs / All-Uses Coverage"
 target_files: ["app/**/*.py"]
