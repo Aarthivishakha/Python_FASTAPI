@@ -1,4 +1,4 @@
-# Integrated tool triggers (Python 3.13)
+# Integrated tool triggers (Python 3.15)
 
 This directory contains all 14 trigger configurations found across the Python
 branch of `testable-platform/Golden_Repo_Lite`. Unlike the original standalone

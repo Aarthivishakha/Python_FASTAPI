@@ -1,9 +1,13 @@
-# FastAPI REST API / Microservice (Python 3.13)
+# FastAPI REST API / Microservice (Python 3.15)
 
 A small, production-shaped FastAPI service with versioned CRUD endpoints,
 validation, centralized configuration, automated tests, optional Docker support,
 and integrated tool triggers adapted from
-[`testable-platform/Golden_Repo_Lite`](https://github.com/testable-platform/Golden_Repo_Lite/tree/python/Python_3.13).
+[`testable-platform/Golden_Repo_Lite`](https://github.com/testable-platform/Golden_Repo_Lite/tree/python).
+
+> Python 3.15 is currently a pre-release runtime. This branch tracks Python
+> 3.15 explicitly and validates it in CI, while keeping the application code
+> compatible with the current FastAPI/Pydantic APIs.
 
 ## Run locally
 
@@ -64,7 +68,8 @@ See `tool-triggers/README.md` for the complete 14-tool matrix and commands.
 ## Why the Dockerfile exists
 
 Docker is optional for local development. The `Dockerfile` pins the runtime to
-Python 3.13, installs only production dependencies, runs as a non-root user, and
+the Python 3.15 release-candidate image, installs only production dependencies,
+runs as a non-root user, and
 provides the same deployable environment on any machine or CI platform. Compose
 was removed because this service currently has no database, queue, or second
 container to orchestrate.
