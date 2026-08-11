@@ -1,0 +1,18 @@
+tool: pydriller
+version: "2.9"
+language: python
+language_version: "3.9"
+technique: "Development Process Analysis"
+classification: "Code Churn"
+target_files:
+  - ../../catalog/mine_history.py
+run:
+  command: "python catalog/mine_history.py --max-commits 200"
+requirements:
+  - pydriller>=2.9
+notes: >
+  Implemented as a standalone Python CLI script (python catalog/mine_history.py),
+  which is real project tooling and pydriller's actual trigger source,
+  since it reads this repo's own git log directly.
+expects:
+  churn_report_generated: true

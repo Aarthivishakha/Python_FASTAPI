@@ -1,0 +1,19 @@
+tool: "semgrep+bandit"
+version: "semgrep 1.172.0 / bandit 1.8.3"
+language: python
+language_version: "3.9"
+technique: "Security White-box Testing (SAST)"
+classification: "Secure Coding Validation"
+target_files:
+  - ../../catalog/main.py
+  - ../../catalog
+run:
+  command: "bandit -r catalog && semgrep --config auto catalog"
+requirements:
+  - semgrep>=1.172.0
+  - bandit==1.8.3
+expects:
+  findings_detected: true
+notes: >
+  catalog/main.py has a real hardcoded API_SECRET_KEY - a genuine SAST
+  finding, not a synthetic one.
