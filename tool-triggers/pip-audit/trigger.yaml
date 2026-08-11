@@ -1,0 +1,11 @@
+tool: pip-audit
+version: "2.10.1"
+language: python
+language_version: "3.11"
+technique: "Dependency Risk (SCA)"
+classification: "Vulnerability Dependency Detection"
+target_files: ["requirements.txt", "requirements-dev.txt"]
+run:
+  command: "pip-audit -r requirements.txt && pip-audit -r requirements-dev.txt"
+requirements: ["pip-audit==2.10.1"]
+expects: {dependency_audit_completed: true}
