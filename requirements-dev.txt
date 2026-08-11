@@ -1,0 +1,6 @@
+-r requirements.txt
+requests==2.27.1
+pytest==6.2.5
+pytest-cov==3.0.0
+pytest-testmon==1.4.1
+flake8==4.0.1
