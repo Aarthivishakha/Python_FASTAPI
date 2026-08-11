@@ -1,0 +1,11 @@
+tool: complexipy
+version: "cognitive-ast"
+language: python
+language_version: "3.13"
+technique: "Readability / Maintainability"
+classification: "Cognitive Complexity"
+target_files: ["app/**/*.py"]
+run:
+  command: "complexipy app"
+requirements: ["complexipy>=1.0.0"]
+expects: {cognitive_complexity_report_generated: true}
