@@ -1,0 +1,11 @@
+tool: "semgrep+bandit"
+version: "semgrep 1.172.0 / bandit 1.8.3"
+language: python
+language_version: "3.8"
+technique: "Security White-box Testing (SAST)"
+classification: "Secure Coding Validation"
+target_files: ["app/**/*.py"]
+run:
+  command: "bandit -r app -f json && semgrep --config auto app --json"
+requirements: ["semgrep>=1.172.0", "bandit==1.8.3"]
+expects: {security_scan_completed: true}
